@@ -1,0 +1,68 @@
+/* RealTimeSky.css */
+
+.sky-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  transition: background 30s linear; /* Smoothly transition between gradients */
+}
+
+/* --- Celestial Body Styles --- */
+.celestial-body {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: all 60s linear; /* Smooth movement across the sky */
+}
+
+.sun {
+  width: 60px;
+  height: 60px;
+  background-color: #ffdd00;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #ffdd00, 0 0 80px #f3904f;
+}
+
+.moon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /* Creates the crescent shape */
+  box-shadow: 10px -10px 0 0px #f4f4f4;
+}
+
+/* --- Star Styles --- */
+.stars-wrapper {
+  transition: opacity 30s linear;
+}
+
+.stars, .twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Static stars layer */
+.stars {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="1" cy="1" r="1" fill="white"/><circle cx="50" cy="25" r="1" fill="white"/><circle cx="120" cy="80" r="1" fill="white"/><circle cx="180" cy="150" r="1" fill="white"/><circle cx="90" cy="180" r="1" fill="white"/></svg>');
+}
+
+/* Animated twinkling stars layer */
+.twinkling {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="25" cy="100" r="1" fill="white"/><circle cx="150" cy="10" r="1" fill="white"/><circle cx="80" cy="50" r="1" fill="white"/><circle cx="10" cy="160" r="1" fill="white"/><circle cx="190" cy="90" r="1" fill="white"/></svg>');
+  animation: twinkle 3s linear infinite;
+}
+
+@keyframes twinkle {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
