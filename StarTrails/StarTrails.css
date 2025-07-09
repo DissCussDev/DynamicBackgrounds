@@ -1,0 +1,31 @@
+/* StarTrails.css */
+
+.star-trails-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind all other content */
+  overflow: hidden;
+  background-color: #0c001a; /* A deep, dark space-like color */
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  animation: fadeAndShrink 2s linear forwards;
+  pointer-events: none; /* Ensure stars don't interfere with mouse events */
+}
+
+/* The animation for the star trail effect */
+@keyframes fadeAndShrink {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

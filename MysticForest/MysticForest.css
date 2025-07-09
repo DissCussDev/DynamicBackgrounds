@@ -1,0 +1,101 @@
+/* MysticForest.css */
+.forest-container {
+  --mouse-x: 0;
+  --mouse-y: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background-color: #0d1a26;
+  transition: --mouse-x 0.1s linear, --mouse-y 0.1s linear;
+}
+
+.forest-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: bottom center;
+  background-repeat: repeat-x;
+  transition: transform 0.3s ease-out;
+}
+
+/* --- Layer Styles --- */
+/* Farthest back, the sky gradient */
+.layer-bg {
+  background: linear-gradient(to top, #1a2933, #0d1a26 70%);
+}
+
+/* Mid-ground trees (SVG for crisp shapes) */
+.layer-3 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200'%3E%3Cpath d='M0 200 L0 150 C50 120, 100 120, 150 150 L150 200 Z M200 200 L200 130 C230 110, 280 110, 310 130 L310 200 Z M400 200 L400 160 C450 140, 500 140, 550 160 L550 200 Z M600 200 L600 120 C640 100, 680 100, 720 120 L720 200 Z' fill='%23263940'/%3E%3C/svg%3E");
+  background-size: 40%;
+  /* Move slightly with the mouse for depth */
+  transform: translate(calc(var(--mouse-x) * -20px), calc(var(--mouse-y) * -10px));
+}
+
+/* Foreground trees */
+.layer-2 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 300'%3E%3Cpath d='M50 300 L50 100 C80 50, 150 50, 180 100 L180 300 Z M300 300 L300 150 C340 110, 410 110, 450 150 L450 300 Z M550 300 L550 80 C600 20, 680 20, 730 80 L730 300 Z' fill='%23395861'/%3E%3C/svg%3E");
+  background-size: 50%;
+  /* Move a bit more */
+  transform: translate(calc(var(--mouse-x) * -40px), calc(var(--mouse-y) * -20px));
+}
+
+/* Closest trees, darkest */
+.layer-1 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Cpath d='M0 400 L0 150 C50 80, 180 80, 230 150 L230 400 Z M400 400 L400 100 C450 20, 580 20, 630 100 L630 400 Z' fill='%230d1a26'/%3E%3C/svg%3E");
+  background-size: 60%;
+  /* Move the most */
+  transform: translate(calc(var(--mouse-x) * -60px), calc(var(--mouse-y) * -30px));
+}
+
+/* --- Fog Layer --- */
+.layer-fog {
+  background: linear-gradient(to top, rgba(13, 26, 38, 0.9) 0%, rgba(13, 26, 38, 0) 50%);
+  animation: drift 60s linear infinite alternate;
+}
+
+@keyframes drift {
+  from { transform: translateX(-5%); }
+  to { transform: translateX(5%); }
+}
+
+/* --- Fireflies --- */
+.fireflies-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%; /* Only in the open area */
+  pointer-events: none;
+}
+
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #adff2f; /* Green-Yellow */
+  border-radius: 50%;
+  box-shadow: 0 0 8px #adff2f, 0 0 12px #adff2f, 0 0 16px #adff2f;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+  50% { transform: translate(20px, -30px) scale(0.8); opacity: 0.7; }
+}
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  50% { transform: translate(-30px, 20px) scale(1.2); opacity: 1; }
+}
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(0.9); opacity: 0.6; }
+  50% { transform: translate(10px, 30px) scale(1); opacity: 1; }
+}

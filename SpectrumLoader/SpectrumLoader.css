@@ -1,0 +1,109 @@
+/* ZxSpectrumLoader.css */
+
+/* The authentic ZX Spectrum color palette */
+:root {
+  --zx-blue: #0000d7;
+  --zx-red: #d70000;
+  --zx-magenta: #d700d7;
+  --zx-green: #00d700;
+  --zx-cyan: #00d7d7;
+  --zx-yellow: #d7d700;
+  --zx-white: #d7d7d7;
+  --zx-black: #000000;
+}
+
+.zx-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--zx-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.zx-border {
+  /* We use padding to create the border area */
+  padding: 20px;
+  /* The magic happens in the border-image animation */
+  animation: border-flash 0.3s steps(1, end) infinite;
+}
+
+.zx-screen {
+  width: 70vw;
+  height: 60vh;
+  max-width: 640px;
+  max-height: 480px;
+  background-color: var(--zx-cyan); /* Paper color */
+  color: var(--zx-black); /* Ink color */
+  padding: 24px;
+  box-sizing: border-box;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Add a subtle scanline/noise effect over the screen */
+.zx-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+/* --- The Border Animation --- */
+/* This animation cycles through the border color combinations */
+@keyframes border-flash {
+  0% {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--zx-cyan),
+      var(--zx-cyan) 15px,
+      var(--zx-red) 15px,
+      var(--zx-red) 30px
+    );
+  }
+  25% {
+     background: repeating-linear-gradient(
+      -45deg,
+      var(--zx-red),
+      var(--zx-red) 15px,
+      var(--zx-cyan) 15px,
+      var(--zx-cyan) 30px
+    );
+  }
+  50% {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--zx-yellow),
+      var(--zx-yellow) 15px,
+      var(--zx-blue) 15px,
+      var(--zx-blue) 30px
+    );
+  }
+  75% {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--zx-blue),
+      var(--zx-blue) 15px,
+      var(--zx-yellow) 15px,
+      var(--zx-yellow) 30px
+    );
+  }
+}

@@ -1,0 +1,140 @@
+/* DesertLandscape.css */
+
+.landscape-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind all other content */
+  overflow: hidden;
+  background-color: #0c0c1e; /* Base color for the deepest night */
+}
+
+/* --- Sky and Celestial Bodies --- */
+
+.sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to top, #f3904f, #3b4371);
+  animation: dayToNight 30s linear infinite;
+}
+
+.sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: #ffdd00;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #ffdd00, 0 0 80px #f3904f;
+  transform: translate(-50%, -50%);
+  animation: sunPath 30s linear infinite;
+}
+
+/* --- Star Animations --- */
+/* Base stars, static */
+.stars {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="1" cy="1" r="1" fill="white"/><circle cx="50" cy="25" r="1" fill="white"/><circle cx="120" cy="80" r="1" fill="white"/><circle cx="180" cy="150" r="1" fill="white"/><circle cx="90" cy="180" r="1" fill="white"/></svg>');
+  opacity: 0;
+  animation: showStars 30s linear infinite;
+}
+
+/* Twinkling star layer */
+.twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="25" cy="100" r="1" fill="white"/><circle cx="150" cy="10" r="1" fill="white"/><circle cx="80" cy="50" r="1" fill="white"/><circle cx="10" cy="160" r="1" fill="white"/><circle cx="190" cy="90" r="1" fill="white"/></svg>');
+  animation: twinkle 3s linear infinite, showStars 30s linear infinite;
+}
+
+
+/* --- Dunes --- */
+
+.dunes {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: #c19a6b; /* Base sand color */
+}
+
+.dune {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50% / 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.dune1 {
+  width: 150%;
+  height: 200px;
+  left: -25%;
+  bottom: -20px;
+  background: #a37b4c; /* Darker foreground dune */
+  z-index: 3;
+}
+
+.dune2 {
+  width: 120%;
+  height: 250px;
+  left: -10%;
+  bottom: -60px;
+  background: #b58e5c;
+  z-index: 2;
+}
+
+.dune3 {
+  width: 100%;
+  height: 300px;
+  left: 0;
+  bottom: -100px;
+  background: #c19a6b;
+  z-index: 1;
+}
+
+
+/* --- Keyframe Animations --- */
+
+/* Animates the sky from day to night */
+@keyframes dayToNight {
+  0% { background: linear-gradient(to top, #f3904f, #3b4371); } /* Sunset */
+  50% { background: linear-gradient(to top, #191970, #0c0c1e); } /* Night */
+  100% { background: linear-gradient(to top, #f3904f, #3b4371); } /* Sunset */
+}
+
+/* Animates the sun's path across the sky */
+@keyframes sunPath {
+  0% { transform: translate(-50%, -20vh) scale(1); background-color: #ffdd00;}
+  25% { transform: translate(-50%, 20vh) scale(0.8); background-color: #f3904f;}
+  50% { transform: translate(-50%, 60vh) scale(0); } /* Sun has set */
+  75% { transform: translate(-50%, 20vh) scale(0.8); background-color: #f3904f; }
+  100% { transform: translate(-50%, -20vh) scale(1); background-color: #ffdd00; }
+}
+
+/* Fades the stars in as the sun sets */
+@keyframes showStars {
+  0% { opacity: 0; }
+  25% { opacity: 0; }
+  50% { opacity: 1; }
+  75% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Animates the twinkling effect */
+@keyframes twinkle {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}

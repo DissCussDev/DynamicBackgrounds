@@ -1,0 +1,82 @@
+/* ArcadeGrid.css */
+
+/* Define the neon color palette using CSS variables */
+:root {
+  --grid-background: #000000;
+  --grid-line-color: #6c00a6; /* Deep purple */
+  --grid-glow-color: #ff00ff;   /* Hot pink/magenta */
+  --scanline-color: rgba(0, 0, 0, 0.3);
+}
+
+.arcade-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--grid-background);
+  perspective: 600px; /* This creates the 3D perspective for the grid */
+}
+
+.grid {
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  left: -50%;
+  top: 0;
+  background-color: var(--grid-background);
+  
+  /* The magic happens here with multiple background gradients */
+  background-image:
+    /* Spotlight effect that follows the mouse */
+    radial-gradient(
+      circle at var(--mouse-x) var(--mouse-y),
+      var(--grid-glow-color) 0%,
+      transparent 20%
+    ),
+    /* Horizontal grid lines */
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 49.5%,
+      var(--grid-line-color) 50%,
+      transparent 50.5%
+    ),
+    /* Vertical grid lines */
+    repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 49.5%,
+      var(--grid-line-color) 50%,
+      transparent 50.5%
+    );
+
+  background-size: 100% 100%, 100% 50px, 50px 100%;
+  transform: rotateX(75deg); /* Tilts the grid into a 3D plane */
+}
+
+/* A subtle glow and scanline effect to sell the retro CRT monitor look */
+.glow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: 
+    radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%),
+    repeating-linear-gradient(to bottom, transparent, transparent 2px, var(--scanline-color) 3px);
+  box-shadow: inset 0 0 150px rgba(255, 0, 255, 0.2);
+}
+
+/* Animation to make the grid scroll endlessly */
+@keyframes scrollGrid {
+  0% {
+    transform: rotateX(75deg) translateY(0px);
+  }
+  100% {
+    transform: rotateX(75deg) translateY(200px);
+  }
+}
