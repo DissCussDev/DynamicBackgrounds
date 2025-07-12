@@ -1,0 +1,2 @@
+import{R as e,j as a}from"./index-CUKI_44J.js";const s=()=>e.createElement("div",{className:"landscape-container"},e.createElement("div",{className:"sky"},e.createElement("div",{className:"stars"}),e.createElement("div",{className:"twinkling"})),e.createElement("div",{className:"sun"}),e.createElement("div",{className:"dunes"},e.createElement("div",{className:"dune dune1"}),e.createElement("div",{className:"dune dune2"}),e.createElement("div",{className:"dune dune3"}))),n=()=>a.jsx(s,{});export{n as default};
+//# sourceMappingURL=DesertLandscape-BRwfJdXE.js.map

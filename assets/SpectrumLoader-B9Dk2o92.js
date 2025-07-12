@@ -1,0 +1,2 @@
+import{R as e,j as r}from"./index-CUKI_44J.js";const t=()=>e.createElement("div",{className:"zx-container"},e.createElement("div",{className:"zx-border"},e.createElement("div",{className:"zx-screen"},[e.createElement("p",{key:"program"},"Program: AWESOME.BAS"),e.createElement("p",{key:"bytes"},"Bytes: 21530")]))),s=()=>r.jsx(t,{});export{s as default};
+//# sourceMappingURL=SpectrumLoader-B9Dk2o92.js.map
